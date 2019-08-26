@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+int main(){
+	char mir[256];
+    mir['A'] = 'A';
+    mir['E'] = '3';
+    mir['H'] = 'H';
+    mir['I'] = 'I';
+    mir['J'] = 'L';
+    mir['L'] = 'J';
+    mir['M'] = 'M';
+    mir['O'] = 'O';
+    mir['S'] = '2';
+    mir['T'] = 'T';
+    mir['U'] = 'U';
+    mir['V'] = 'V';
+    mir['W'] = 'W';
+    mir['X'] = 'X';
+    mir['Y'] = 'Y';
+    mir['Z'] = '5';
+    mir['0'] = '0';
+    mir['1'] = '1';
+    mir['2'] = 'S';
+    mir['3'] = 'E';
+    mir['5'] = 'Z';
+    mir['8'] = '8';
+	char bang[20];
+	while(cin.getline(bang,20,'\n'))
+	{
+		int number = (strlen(bang));
+		int palindromes=1;
+		int mirror=1;
+		for(int i =0; i<number; i++ , number--)
+		{
+			if(bang[number-1] != mir[bang[i]])
+			{	mirror = 0;
+				}
+			if(bang[i] != bang[number-1]){
+				palindromes = 0;
+			}
+		}
+		if (palindromes==1 && mirror==1)
+			cout<<bang<<" -- is a mirrored palindrome."<<endl;
+		else if(palindromes==1 && mirror==0)
+			cout<<bang<<" -- is a regular palindrome."<<endl;
+		else if(palindromes==0 && mirror==1)
+			cout<<bang<<" -- is a mirrored string."<<endl;
+		else if(palindromes==0 && mirror==0)
+			cout<<bang<<" -- is not a palindrome."<<endl;
+			
+		cout<<endl;
+   	}
+    return 0;
+}
