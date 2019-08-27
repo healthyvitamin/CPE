@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+int main(){
+    int a,b,aa,bb;
+    while(cin>>aa>>bb) //1.輸入兩個數 
+    {
+    	int max=0; 
+  
+	    if(aa>bb)  //2.將輸入從小排到大  要注意輸入進來的 aa<bb aa>bb aa==bb是否都考慮到 否則會沒有a跟b 且因為記憶體留存的關係 a跟b會是上一次的a跟b 
+	    {
+	    	a=bb;
+	    	b=aa;
+	    }else 
+	    {
+	    	a=aa;
+	    	b=bb;
+	    }
+	    for(int i=a; i<=b; i++) //3.從小數到大數 每個數處理一次 
+	    {	
+	    	int bang=i;
+	    	int counter=1;
+	    	
+	    	while(bang!=1)  
+	    	{
+	    		counter++;
+		    	if((bang%2)== 1) //4.題目的算法 
+		    	{
+		    	  bang=3*bang+1;
+		    	}
+		    	else{
+		    	  bang/=2;
+		    	}
+		    }
+		    if(counter>max) //5.紀錄最大的 cycle長度 
+		    {
+		    	max=counter;
+		    }
+	    }
+	    cout<<aa<<" "<<bb<<" "<<max<<endl;
+    }
+    return 0;
+}
