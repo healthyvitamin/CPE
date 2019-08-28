@@ -1,0 +1,17 @@
+#include<iostream>
+using namespace std;
+int main(){
+	long long a,b;
+
+	while(cin>>a>>b)
+	{
+		if(a>b)
+		{
+			int temp = b;
+			b = a;
+			a = temp;
+		}
+		cout<<b-a<<endl;
+	}
+	return 0;
+}
