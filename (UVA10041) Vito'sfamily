@@ -1,0 +1,34 @@
+#include<iostream>
+#include<cmath>
+#include <algorithm>    // std::sort
+using namespace std;
+int main(){
+	int how_many; //幾筆測試資料 
+	cin>>how_many;
+	int answer_distance[500]={0}; //每筆測試資料的答案 要初始化為0 否則距離會錯誤 
+	
+	for(int i=0;i<how_many;i++)
+	{
+		int neighbor;  //每筆資料有多少個鄰居  上限500人 
+		cin>>neighbor;
+		
+		int distance[500]; //每個鄰居的房子位子 
+		
+		for(int j=0;j<neighbor;j++) //讀取位子 
+		{
+			cin>>distance[j];
+		}	
+		  
+		sort(distance,distance+neighbor); //從小排到大 
+		
+		int best=distance[(int)neighbor/2];   //取中位數 因為中位數就是題目要的房子位子 
+		
+        for(int j=0;j<neighbor;j++) //將該位子與其他位子相減得到答案距離 
+        {    answer_distance[i] += abs(distance[j]-best);    }
+        
+        cout<<answer_distance[i]<<endl;
+	}
+	
+	
+	return 0;
+}
