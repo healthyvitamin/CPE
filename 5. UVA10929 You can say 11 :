@@ -1,0 +1,23 @@
+#include <iostream>  
+using namespace std;  
+ //此題解答來自 http://on-my-way-to-adventure.blogspot.com/2017/09/blog-post.html
+int main() {  
+    string s;  //待測數字
+    while(cin >> s && s != "0")  //使用者輸入s，且s不能為0
+    {  
+        long long sum[2] = {0, 0};   //放奇數和和偶數和的陣列
+        for(int i = 0;i < s.length();i++)    
+        {  
+            sum[i%2] = sum[i%2] + s[i] - '0';   // -字元的0 是因為我們是用字元儲存 
+											//必須利用ASCII碼 0=48 5=53  53-48=5 來取得真正的數字5 
+        }  
+        if(abs(sum[0]-sum[1])%11 == 0)  
+        {  
+            cout << s << " is a multiple of 11." << endl;  
+        }else  
+        {  
+            cout << s << " is not a multiple of 11." << endl;  
+        }  
+    }  
+    return 0;  
+}  
