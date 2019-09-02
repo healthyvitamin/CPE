@@ -3,11 +3,7 @@
 using namespace std;
 int main(){
 	unsigned int a,b;
-	while(cin>>a>>b)  //然而發現輸入594 變成694 輸入9999 變成99191 WHY? 
-		//問題出在22~23行 
-	                 //解:https://blog.csdn.net/Shenpibaipao/article/details/78560151
-			 //原因出在pow的算法 10的2次方算出來其實是 99.99999~  而我們用int強制轉型時會將小數去掉 變成99
-			 //所以先使用四捨五入函數round 再轉型即可 PS.我的Dev-c++沒有此問題 看來是不同平台的問題
+	while(cin>>a>>b)  
 	{
 		
 		if (a==0 && b==0)
@@ -22,6 +18,10 @@ int main(){
 		
 			Abang[i] = (a / (int)round(pow(10 , i))) % 10; //儲存保留幾位數  注意Cmath的pow回傳是double型態 故要轉型 
 			Bbang[i] = (b / (int)round(pow(10 , i))) % 10; 
+			//然而發現輸入594 變成694 輸入9999 變成99191 WHY? 
+	                //解:https://blog.csdn.net/Shenpibaipao/article/details/78560151
+			//原因出在pow的算法 10的2次方算出來其實是 99.99999~  而我們用int強制轉型時會將小數去掉 變成99
+			//所以先使用四捨五入函數round 再轉型即可 PS.我的Dev-c++沒有此問題 看來是不同平台的問題
 			
 		}
 		
