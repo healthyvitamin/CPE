@@ -1,0 +1,55 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main(){
+	unsigned int a,b;
+	while(cin>>a>>b)  //此題在瘋狂程設中有BUG 輸入594 變成694 輸入9999 變成99191 WHY? 
+	{
+		
+		if (a==0 && b==0)
+			break;
+			
+		unsigned int Abang[11]={0}; //最多有10+1位 
+		unsigned int Bbang[11]={0};
+		
+		int i=0;
+		for(i=0 ; i<=9 ; i++)
+		{	
+		
+			Abang[i] = (a / (int)pow(10 , i)) % 10; //儲存保留幾位數  注意Cmath的pow回傳是double型態 故要轉型 
+			Bbang[i] = (b / (int)pow(10 , i)) % 10; 
+			
+		}
+		
+		int carry = 0;
+		
+		for(i=0 ; i<=9 ; i++)
+		{
+			if ((Abang[i] + Bbang[i]) >= 10 )  //判斷進位 
+			{
+				carry++;
+								//進位給下一位 
+								
+				int j=1;
+				Abang[i+j] += 1;
+				while ((Abang[i+j])  >= 10)  //然而如果此進位又導致對方進位  要一直進位直到沒超過10  
+				{
+					carry++;
+					Abang[i+j] %= 10; //留下個位數 
+					j++; 
+					Abang[i+j] += 1;
+				}
+			}  
+			
+		}
+
+		if(carry==0)
+			cout<<"No carry operation."<<endl;
+		else if(carry==1)
+			cout<<"1 carry operation."<<endl;
+		else
+			cout<<carry<<" carry operations."<<endl;
+		
+	}
+	return 0;
+}
