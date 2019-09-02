@@ -1,0 +1,68 @@
+//學習自 https://cpecodeexame1star.blogspot.com/2017/06/cpe-006-uva10101-bangla-numbers.html
+//1.首先想法是 依序進行解碼的動作 代表一次處理kuti' (10000000), 'lakh' (100000), 'hajar' (1000), 'shata' (100)
+//2.所以要使用函數的遞迴 一次只處理一部份 下一部份丟到下個函數處理 
+
+#include<iostream>
+using namespace std;
+
+int numberbang(long long a)
+{
+	if (a == 0)
+	{
+		cout<<0;
+		return 0;
+	}
+	if(a/10000000)  //2.將大於kuti的數分割 
+	{
+		numberbang(a/10000000); //3.所以將原始數字分離送至下個函數 以 kuti為界限  
+		//(kuti的數量就是分離後的數處理剩下來的尾數 因為shata只能代表百位數 剩下的十位數其實就是kuti的數) 
+		cout<<" kuti";  // 4.所以如果有分割 不管怎樣頭都要顯示kuti 
+		
+		a%=10000000;	//5.利用%=取得剩下來的部分 
+		if (a>0)        
+			cout<<" ";
+	}
+	if(a/100000)		//6. lakh
+	{
+		cout<<a/100000<<" lakh";
+		a%=100000;
+		if (a>0)
+			cout<<" "; 
+	}
+	if(a/1000)
+	{
+		cout<<a/1000<<" hajar";
+		a%=1000;
+		if (a>0)
+			cout<<" ";
+	}
+	if(a/100)
+	{
+		cout<<a/100<<" shata";
+		a%=100;
+		if (a>0)       //8.格式問題 當剩下來的>0時才加空格 否則如果剩下來的是0  kuti跟前面的數 會有兩個空格 但題目只要求一格 
+			cout<<" ";
+		
+	}
+	if (a != 0) //7.最後將尾數列印出來 
+		cout<<a;
+		
+	
+}
+
+int main(){
+	long long bang;
+	int number = 1;
+	while(cin>>bang)
+	{
+		if (number>=10)
+			cout<<"  "<<number<<". ";
+		else 
+			cout<<"   "<<number<<". ";
+		numberbang(bang);
+		cout<<endl;
+		
+		number++;
+	}
+	return 0;
+}
