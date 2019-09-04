@@ -1,0 +1,25 @@
+作者:http://on-my-way-to-adventure.blogspot.com/2017/09/uva10008-whats-cryptanalysis.html
+#include <iostream>
+#include <cctype>
+using namespace std;
+
+int count[256], length;   //1.此題重點在於 使用字元當作索引來儲存 特定字元出現的次數 
+int main() {
+ char text;                
+ while(cin >> text) //2.所以將每個輸入進的字元轉成大寫並且將其本身當作索引 接著+1 
+ {
+  length++;             
+  count[toupper(text)]++;   
+ }
+ while(--length)           
+ {
+  for(text = 'A'; text <= 'Z';text++)  //3.只列印字母 
+  {
+   if(count[text] == length)  //4.利用 length 從最大的開始列印 
+   {
+    cout << text << " " << count[text] << endl;
+   }
+  }
+ }
+ return 0;
+}
