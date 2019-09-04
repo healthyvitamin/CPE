@@ -33,3 +33,6 @@ int main(){
 	
 	return 0;
 }
+
+另解 https://blog.csdn.net/hcbbt/article/details/9322079
+在一開始就把字符串使用sort排序好... 這樣就不需要煩惱儲存、ASCII的問題了
