@@ -1,0 +1,37 @@
+#include<iostream>
+#include<cstring> //字串處理函數 strlen 
+#include<cstdlib> // itoa  int轉char使用 
+using namespace std;
+						 
+
+int numberadd(char* number) //2.由於strlen必須傳入位址 所以必須將輸入字串設定為指標以拿取位址 
+{
+	int bang=0;
+	int bang2;
+	char bangstring[11];
+	for(int i=0; i<strlen(number); i++) //3.將每個數相加  使用ASCII的方式把char轉成int 
+	{
+		bang += (number[i] - '0') ;
+	}
+	if(bang<10)    //4.遞迴函數 大於10時繼續處理 
+		return bang;
+	else
+	{
+		itoa(bang,bangstring,10); //int轉char 將 bang放入 bangstring 以十進制放 
+		return numberadd(bangstring);
+	}
+}
+int main(){
+	
+	char n[11];
+	int bang3;
+	
+	while(cin.getline(n , 11 , '\n')) //1. 讀取一行 此為char的方法  string的話要用getline(cin , string) 
+	{
+		if(n[0] == '0')   
+			break;
+		bang3 = numberadd(n);
+		cout<<bang3<<endl;
+	}
+	return 0;
+}
