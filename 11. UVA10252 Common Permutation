@@ -1,0 +1,35 @@
+#include<iostream>
+#include<cstring> //字串處理函數 strlen 
+using namespace std;
+						 
+int main(){
+	char bang1[1000]; //最多1000個小寫 
+	char bang2[1000];
+	while(cin.getline(bang1,1000,'\n') && cin.getline(bang2,1000,'\n') ) //每次輸入兩行 
+	{
+			int bang_store[256]={0}; //使用int陣列還計算一個字母總共比對到了幾次  使用ASCII碼來索引 小寫a=97 z=122 (所以其實到122即可) 
+			for(int i=0 ; i<strlen(bang1); i++)     
+			{
+				for(int j=0 ; j<strlen(bang2); j++)
+				{
+					if (bang1[i] == bang2[j])  //如果比對成功 該字母出現數量+1 
+					{
+						bang_store[bang1[i]]++;
+						bang1[i] = '0';		//遮罩 兩邊都要mark掉 才不會重複偵測 
+						bang2[j] = '0';
+					}
+				}
+			}
+			for(int  k= 'a'; k<= 'z' ; k++)  //使用ASCII碼 從a列印到z以達成字母排序的功能 
+			{
+				if (bang_store[k] > 0)
+				{
+					for(int m=0; m<bang_store[k]; m++ ) //列印次數 
+						cout<<char(k); //轉成char 因為k原本是ASCII碼(int) 
+				}
+			}
+			cout<<endl;
+	}
+	
+	return 0;
+}
