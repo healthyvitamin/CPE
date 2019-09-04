@@ -3,7 +3,7 @@
 #include <cctype>
 using namespace std;
 
-int count[256], length;   //1.此題重點在於 使用字元當作索引來儲存 特定字元出現的次數 
+int count[256], length;   //1.此題重點在於 使用字元當作索引來儲存 特定字元出現的次數  例如 count['A'] 其實就是count['65'] (ASCII碼)
 int main() {
  char text;                
  while(cin >> text) //2.所以將每個輸入進的字元轉成大寫並且將其本身當作索引 接著+1 
