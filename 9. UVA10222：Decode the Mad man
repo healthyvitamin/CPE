@@ -1,0 +1,28 @@
+作者http://on-my-way-to-adventure.blogspot.com/2017/09/uva10222-decode-mad-man.html 
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {             //此題需要把輸入改成在鍵盤上往左兩個的字母  要注意每個鍵盤不同 所以此題不推薦
+						/
+ char c;
+ char s[] = "`1234567890-="        
+   "qwertyuiop[]\\"
+   "asdfghjkl;'"
+   "zxcvbnm,./";
+ while(cin.get(c))                            
+ {
+  c = tolower(c);      //從範例可以知道只需要是小寫 
+  char *p = strchr(s, c);   //strchr 傳回c字元在字元陣列s中的位址 
+  							//位址所以需要指標來儲存 
+  if(p)                                         
+  {
+   cout << *(p-2);  //將位址先往左移兩個 再用*指標符合取出真正的數值 
+  }
+  else
+  {
+   cout << c;                    
+  }
+ }
+ return 0;
+}
