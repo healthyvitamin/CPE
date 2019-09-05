@@ -1,0 +1,51 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+int main(){						//此題重點在於格式的處理 有相當多的邏輯需要判斷 
+	char bang[100][100];
+	int bang_word_number = 0;
+	int number = 0;
+	int i = 0;
+	while(cin.getline(bang[i],100,'\n')) //1.輸入 (要用while來判斷有無輸入 否則用for會把[100]全輸入) 
+	{
+		number=strlen(bang[i]);  //2.存取最長的字數 
+		if (number > bang_word_number)
+			bang_word_number = number;
+		i++; //3. 記錄存取了多少串  例如 i=2 代表有 [0]、[1]串 
+	}
+	for(int k=0; k<bang_word_number; k++)  //4.輸出的方式是   0 | 0 1 2 3
+											//				  1 | 0 1 2 3
+													//		  j   k    j=目前串  k=目前字數  bang_word_number=最長的字數 
+	{
+		for(int j=i-1; j>=0; j--)
+		{
+	//		if(bang[j][0] == 0)	// 此處是如果沒用j=i-1 要做的判斷 否則會輸出錯誤(因bang沒有初始化) 
+	//		{
+	//			continue;
+	//		}
+			if(bang[j][k] == 0) //5.判斷是否未輸入 由於
+													// C字串  abc 
+													// A字串  abcdef
+													// B字串  abcd    當k指到ef時 由於B字串輸入只到cd  如果用k當索引來輸出B字串 會沒輸出
+													//但格式需要空白  但是C字串的e f位子 卻不需要空白 
+			//所以這邊就是在判斷 當碰到  bang[j][k] == 0時 往上看看 如果有碰到"輸入"(ef) 才輸出空白	
+			{
+				bool is_NULL = true;
+				for(int m=j; m>=0; m--)   
+										
+				{
+					if(bang[m][k] != 0)
+						is_NULL = false;
+				}
+				if(is_NULL == false)
+					cout<<" ";
+			}
+			if(bang[j][k] != 0) // 6. 如果有輸入則輸出該字 
+			{
+				cout<<bang[j][k];
+			}
+		}
+		cout<<endl;		//7.最後一次把k行輸出完後 換行 
+	}
+	return 0;
+}
