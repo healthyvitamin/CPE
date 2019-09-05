@@ -1,0 +1,31 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+int main(){
+	char bang[100];
+	bool first =false;
+	while(cin.getline(bang,100,'\n'))
+	{
+		
+		//此題較為簡單 只要判斷第一個出現的" 以及第二格出現的" 分別替換成有方向性的雙引號即可 
+		for(int i=0; i<strlen(bang); i++)
+		{
+			if (bang[i] == '"' && first == false)
+			{
+				cout<<"``";
+				first = true;
+			}
+			else if(bang[i] == '"' && first == true){
+				cout<<"''";
+				first = false;
+			}
+			else
+			{
+				cout<<bang[i];
+			}
+		
+		}
+		cout<<endl;
+	}
+	return 0;
+}
