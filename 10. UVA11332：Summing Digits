@@ -18,6 +18,7 @@ int numberadd(char* number) //2.由於strlen必須傳入位址 所以必須將�
 	else
 	{
 		itoa(bang,bangstring,10); //int轉char 將 bang放入 bangstring 以十進制放 
+		2019/9/15 不能將數字+'0'來還原 因為ASCII碼的數字只有到個位數而已
 		return numberadd(bangstring);
 	}
 }
