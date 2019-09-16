@@ -1,0 +1,65 @@
+#include <iostream>  
+using namespace std;  
+//出自http://on-my-way-to-adventure.blogspot.com/2017/09/uva12019-dooms-day-algorithmc.html 
+int main() {  
+    int n, month, day, totle = 0;  
+    int years_day[12] =   //儲存每月的天數
+        {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};  
+    cin >> n;  
+    for(int i = 0; i < n;i++)  //有幾筆測資就重複幾次
+    {  
+        cin >> month >> day;  //輸入月份和日期
+        if(month == 1)  //如果是一月
+        {  
+            totle = (day + 5) % 7;  
+        }  
+        else  //一月以外的月份
+        {  
+            for(int j = 0; j < (month-1);j++)  
+            {  
+                totle = totle + years_day[j];  
+            }  
+            totle = (totle + day + 5)%7;  
+        }  
+   
+        switch(totle)  //由餘數判定現在星期幾
+        {  
+            case 0:  
+                cout << "Sunday" << endl;  
+                break;  
+            case 1:  
+                cout << "Monday" << endl;  
+                break;  
+            case 2:  
+                cout << "Tuesday" << endl;  
+                break;  
+            case 3:  
+                cout << "Wednesday" << endl;  
+                break;  
+            case 4:  
+                cout << "Thursday" << endl;  
+                break;  
+            case 5:  
+                cout << "Friday" << endl;  
+                break;  
+            case 6:  
+                cout << "Saturday" << endl;  
+                break;  
+        }  
+        totle = 0;  
+    }  
+    return 0;  
+}
+
+另解:http://using-c.blogspot.com/2011/07/problem-12019-dooms-day-algorithm.html
+ 532輪迴 所以2000年的DOOM'S DAY是星期二
+每一個平常年 Doomsday 會跳一天，而閏年則會跳兩天 2011年 其中2004 2008是閏年(可被4整除 但不能被100整除 或 可被400整除 就是閏年) 
+所以總共從星期二 跳了 1*9+2*2 = 13天  所以2011年的doom's day = 星期一 
+
+1.解題方法:(上面只是知識) 根據每一年的二月的最後一天 (2/28 或 2/29)，和 4/4、6/6、8/8、10/10、12/12，和 9/5、5/9、7/11、11/7 
+(記憶口訣是 "我在 7-11 的工作時間是朝 9 晚 5〃")，和 3/7 (二月最後一天的一星期後)，和 1/3 (西元年不可被 4 整除) 或 1/4 (可以被 4 整除) 
+
+2.假設我想要求2011年的7月7號的doom's day  7/7 跟7/11 代表差了-4天 
+
+3.2011的尾數  11/12 = 0....11   11/4 = 2   所以2011/7/7的doom's day就是跟2000年的doom's day 星期二 差了 -4+0+11+2天
+星期二往前推9天 = 星期四 
