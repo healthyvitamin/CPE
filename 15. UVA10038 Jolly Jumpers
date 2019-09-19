@@ -1,0 +1,40 @@
+//input給第一個數字n  代表接下來有n個數 並且每個相鄰的數 都必須在1~n-1內  並且1~n-1都必須存在 才是jolly jump 
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main(){
+	int bang;  
+	int bang2[3000]; //儲存n個數 
+	int bang3[3000]={0}; //儲存n個數相減後取絕對值的數 所以最多有3000-1個 (但還是設3000個) 
+	while(cin>>bang)
+	{
+		
+		for(int i = 0; i<bang; i++) //bang2儲存輸入 
+		{
+			cin>>bang2[i];
+		}
+		for(int j = 0; j<bang-1; j++) //相鄰的相減後取絕對值存入bang3 
+		{
+			bang3[j]=abs(bang2[j]-bang2[j+1]);
+		}
+		bool jolly = true;
+		for(int k = 1; k<bang; k++) //從1開始檢查到n-1  
+		{
+			int kk = 0;
+			for( kk=0; kk<bang-1; kk++)  
+			{
+				if(bang3[kk] == k)
+					break;
+			}
+			if(kk==bang-1) //只要有一個數不存在 變不是jolly 
+				jolly = false;
+		}
+		
+		if(jolly)
+			cout<<"Jolly"<<endl;
+		else
+			cout<<"Not jolly"<<endl;
+		
+	}
+	return 0 ;
+}
