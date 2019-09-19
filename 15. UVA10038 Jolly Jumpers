@@ -1,4 +1,4 @@
-//input給第一個數字n  代表接下來有n個數 並且每個相鄰的數 都必須在1~n-1內  並且1~n-1都必須存在 才是jolly jump 
+//input給第一個數字n  代表接下來有n個數 並且每個相鄰的數相減取絕對值 都必須在1~n-1內  並且1~n-1都必須存在 才是jolly jump 
 #include <iostream>
 #include <cmath>
 using namespace std;
