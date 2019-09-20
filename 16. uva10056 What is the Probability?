@@ -1,0 +1,11 @@
+http://luckycat.kshs.kh.edu.tw/homework/q10056.htm
+https://a7069810.pixnet.net/blog/post/400735589-%5Buva10056%5D-what-is-the-probability%3F
+觀看此篇後的解題想法
+1.首先利用P跟Q的機率基礎 從round1推導第k個人的獲勝率到round3 即可發現 Round R 時 此人的獲勝機率 (q^(R-1)*n)*(q^(k-1))*p
+2.再來使用等比公式 我們要把每個回合此人的獲勝機率加起來  可以發現等比r為 = q^n 因此使用wiki的等比求和公式
+首項(q^(k-1))*p * 1-(q^n)^R / 1-(q^n)  
+
+R回合次數可自訂
+
+3.題目要求精確到小數第4位 故需要#include<iomanip> 的 setprecision
+cout<<setprecision(5)<<ans;
