@@ -17,7 +17,7 @@ int main(){
 		
 		
 		int a[50];
-		int a_number =-1;
+		int a_number = -1; //計算公式需要幾個數
 		for(int i=0,j=0; i<strlen(bang)  ; i+=2 , j++) //2. 使用字串存取 因此需要再把它轉化至另一個int陣列儲存  注意要用strlen 只存入輸入
 		{
 			if (bang[i] != '-')  //解決負號的問題 
@@ -33,7 +33,7 @@ int main(){
 		
 		//3. 題目公式  這邊要注意 n是係數的數量-1  
 		例如 a0 = 1 a1 = 1 a2 = 1  表示n=2 則根據題目公式 只需要算 a0*n*x^(n-1) +  a1*n-1*x^(n-2)  並沒有a2!!! 
-		所以 a_number才從-1開始計數 (第20行) 
+		所以 a_number才從-1開始計數 (第20行)  因為假設有20個係數 在a陣列中以0~19索引儲存 而我們只需要0~18而已
 		
 		long long answer=0;
 		int exp=0;
