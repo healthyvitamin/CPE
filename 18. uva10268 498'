@@ -18,7 +18,7 @@ int main(){
 		
 		int a[50];
 		int a_number =-1;
-		for(int i=0,j=0; i<strlen(bang)  ; i+=2 , j++) //2. 使用字串存取 因此需要再把它轉化至另一個int陣列儲存 
+		for(int i=0,j=0; i<strlen(bang)  ; i+=2 , j++) //2. 使用字串存取 因此需要再把它轉化至另一個int陣列儲存  注意要用strlen 只存入輸入
 		{
 			if (bang[i] != '-')  //解決負號的問題 
 				a[j] = bang[i] -'0';
