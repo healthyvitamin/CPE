@@ -1,0 +1,51 @@
+此題建議先用題目的公式 動手算範例給的輸入 整個搞懂公式的n、x、a 是拿輸入的什麼後再寫即可  
+
+#include <iostream>
+#include <cstring>
+#include <cmath>
+using namespace std;
+int main(){
+	int x;
+	char bang[300] ; //大小建議設大一點
+	while(cin>>x)    
+	{								 //1. 輸入問題 由於題目並沒有說輸入有幾個  
+//		cout<<x<<endl;    
+		cin.getline(bang,300,'\n'); //首先因為 cin>>x後 並不會換行 而是會維持在第一行 因此cin.getline會拿到空白 
+		if(strlen(bang) == 0) 	//所以需要判斷然後再拿一次 
+			cin.getline(bang,300,'\n');
+//		cout<<bang<<endl;
+		
+		
+		int a[50];
+		int a_number =-1;
+		for(int i=0,j=0; i<strlen(bang)  ; i+=2 , j++) //2. 使用字串存取 因此需要再把它轉化至另一個int陣列儲存 
+		{
+			if (bang[i] != '-')  //解決負號的問題 
+				a[j] = bang[i] -'0';
+			else
+			{
+				a[j] = -(bang[i+1] -'0');
+				i++; //因為負號會佔2格char 因此要把索引++才能拿到下一個數字 
+			}
+//			cout<<a[j]<<endl;
+			a_number++;
+		}
+		
+		//3. 題目公式  這邊要注意 n是係數的數量-1  
+		例如 a0 = 1 a1 = 1 a2 = 1  表示n=2 則根據題目公式 只需要算 a0*n*x^(n-1) +  a1*n-1*x^(n-2)  並沒有a2!!! 
+		所以 a_number才從-1開始計數 (第20行) 
+		
+		long long answer=0;
+		int exp=0;
+		for(int i = 0,j = a_number-1; i<a_number; i++,j--) // i< a_number 同理 是為了只處理a0跟a1 i只會到 a_number-1 
+		{
+			exp = pow(x,j);
+			answer += a[i]*(j+1)*exp;
+			
+	//		cout<<"i= j="<<i<<" "<<j<<" "<<a[i]*(j+1)*exp<<endl;
+		}
+		cout<<answer<<endl;
+		
+	}
+	return 0;
+}
