@@ -1,0 +1,24 @@
+
+#include <iostream>
+using namespace std;
+int main(){
+	int test_case;
+	cin>>test_case;
+	int bang1,bang2;
+	for(int j = 0 ; j< test_case; j++)
+	{
+		cin>>bang1>>bang2;
+		int answer =0;
+		for(int i = bang1; i<=bang2; i += 2) 此題無難度 只需注意只有奇數才能相加
+		{
+			if((i %2)== 0) 所以要判斷是否是奇數
+				i++;
+			answer += i;
+		}
+		cout<<"Case "<<j+1<<": "<<answer<<endl;
+	}
+	return 0;
+}
+
+可改成使用公式 等差級數
+http://on-my-way-to-adventure.blogspot.com/2017/09/uva10783-odd-sumc.html
