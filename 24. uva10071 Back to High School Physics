@@ -1,0 +1,21 @@
+#include<iostream>
+using namespace std;
+int main(){
+	int v,t;
+	while(cin>>v>>t)
+	{
+		cout<<2*v*t<<endl;
+	}
+	return 0;
+}
+
+
+https://knightzone.studio/2011/11/29/1239/uva%EF%BC%9A10071%EF%BC%8Dback-to-high-school-physics/
+
+假設v、t給5 12
+代表在5秒時速度為12  那麼在5*2秒時 位移為多少?
+
+位移的公式是 平均速度 * 經過的時間
+因為正好是要兩倍時間後的位移且因為等加速度，所以此時的速度即為平均速度 <<所以我們平均速度就是12
+
+那麼12*10 =答案  (也可以5*2)
