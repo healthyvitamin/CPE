@@ -1,0 +1,37 @@
+https://zerojudge.tw/ShowProblem?problemid=d186
+使用https://zerojudge.tw/ShowThread?postid=12873&reply=0的方法
+因為假設 7~7777  如果使用7^2 8^2....方法 會省略到 9 16 這些由小於7的3、4 所組成的平方數 
+因此要分開計算1. <7777的數量
+            2. <7的數量
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main(){
+	int x,y;
+	while(cin>>x>>y)
+	{
+		if(x==0 && y==0)
+			break;
+		int big_number =0;
+		long long bang;
+		for(int i=0; i<=y; i++)
+		{
+			bang = pow(i,2);
+			if(bang<=y)
+			{
+			 big_number++;
+			}
+		}
+		int small_number =0;
+		for(int i=0; i<x; i++)
+		{
+			bang = pow(i,2);
+			if(bang<x)
+			{
+			 small_number++;
+			}
+		}
+		cout<<big_number-small_number<<endl;
+	}
+	return 0;
+}
