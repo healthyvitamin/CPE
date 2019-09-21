@@ -1,0 +1,53 @@
+https://cpecodeexame1star.blogspot.com/2017/05/uva11349-symmetric-matrix.html
+一個簡單的方法是準備兩個長度相同的一維陣列，一個在輸入的時候照順序從[0]往後存，另一個反序從[n*n-1]往回存，最後判斷這兩個陣列是否相同。
+我解此題是使用此方法
+不過此題主要難在輸入格式的問題
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main(){
+	int number;
+	char N[10];  讀取N = X是使用字串的方法
+	char clear[10]; 
+	cin>>number;
+//	cout<<number<<endl;
+	for(int i=0; i<number; i++)
+	{
+		bool Symmetric=true;
+		cin.getline(clear,10,'\n');  //由於在輸入時 系統會故意給你最後留個空白 因此在每次讀取N前 要用getline把空白讀取起來 
+		cin.getline(N,10,'\n');  //以及讀取N時 後面也會留空白 因此讀取的字數必須設大一點! 
+	//	cout<<N<<endl;
+		int matrix_number = pow(N[4]-'0',2);  //注意因為char字串最後會保留一個\0作為結尾 因此N至少要容納 N = 3 01234 "5"(保留'\0') 6個字
+		int element=0;
+		int first[matrix_number];
+		int last[matrix_number];
+	
+		for(int j = 0, k=matrix_number-1 ; j<matrix_number || k>=0; j++ ,k--)
+		{
+			cin>>element;
+	//		cout<<element<<" ";
+			first[j]=element;
+			if (element<0)  //對稱矩陣不能存在負數
+				Symmetric=false;
+		}
+	//	cout<<endl;
+		for(int j = 0, k=matrix_number-1 ; j<matrix_number || k>=0; j++ ,k--)
+		{
+			last[k]=first[j];
+		}
+		for(int j = 0; j<matrix_number; j++)
+		{
+			if (last[j]!=first[j])
+			{
+				Symmetric=false;
+				break;
+			}
+		}
+		
+		if(Symmetric)
+			cout<<"Test #"<<i+1<<": Symmetric."<<endl;
+		else
+			cout<<"Test #"<<i+1<<": Non-symmetric."<<endl;	
+	}
+	return 0;
+}
