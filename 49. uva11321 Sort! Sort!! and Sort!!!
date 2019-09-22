@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+
+bool compare(int bang1,int bang2,int Mbang)
+{
+//	cout<<bang1<<" "<<bang2<<endl;
+	if(bang1 % Mbang != bang2 % Mbang)  //依照每個數字除M的餘數從小排到大 
+	{
+		if (bang1 % Mbang>bang2 % Mbang)   //所以這邊千萬要使用餘數做比較 否則會邏輯錯誤
+			return true;
+		else
+			return false;
+	}
+  
+	//如果餘數一樣
+  
+	int first = bang1 % 2;
+	int second = bang2 % 2;
+	
+	if (first != 0 && second != 0)  //如果都是奇數 數字大的為優先
+	{
+		if (bang1<bang2)  //所以只有當bang1<bang2時才需要交換
+			return true;
+		else
+			return false;
+	}
+	
+	if (first  == 0 && second  == 0) //如果都是偶數 數字小的為優先
+	{
+		if (bang1>bang2)  //所以只有當bang1>bang2時才需要交換
+			return true;
+		else
+			return false;
+	}
+	
+	if (first  != 0 && second == 0) 如果兩個數字是一基一偶的話 ⇒基數為優先
+	{
+		return false;
+	}
+	
+	if (first  == 0 && second  != 0)  //所以只有 bang2是奇數的話 才需要交換
+	{
+		return true;
+	}
+	
+}
+
+int main(){
+
+	int N,M;
+	while(cin>>N>>M)
+	{
+			
+		if(N == 0&& M == 0)
+		{
+			cout<<N<<" "<<M<<endl; //格式需要輸出0 0
+			break;
+		}
+		int bang[N];
+		
+		for(int i=0; i<N; i++)
+		{
+			cin>>bang[i];
+		}
+		
+		for(int j=N-1; j>0; j--) //泡沫排序法
+		{
+			for(int k=0; k<j; k++)
+			{
+				int temp;
+				if (compare(bang[k],bang[k+1],M) == true)  //使用自定義的compare 判斷 bang[k] 是否大於 bang[k+1] (才需要交換))
+				{
+					temp = bang[k+1];
+					bang[k+1] = bang[k];
+					bang[k] = temp;
+				}
+
+			}
+		}
+		
+		
+
+		cout<<N<<" "<<M<<endl;
+		for(int i=0; i<N; i++)
+		{
+			cout<<bang[i]<<endl;
+		}
+	}
+
+	return 0;
+}
