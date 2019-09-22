@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+int main(){
+	int col,row,field=1;
+	char clear[20];
+	int dumpling=0;
+	
+	while(cin>>col>>row)
+	{
+		if(dumpling != 0 && col != 0 && row !=0) //格式需求 只有每個field中間要換行 頭尾不用
+		{
+			cout<<endl;
+		}
+		dumpling++;
+		cin.getline(clear,20,'\n'); //由於cin輸入int 並不會幫你換行 所以要用這個
+		if(col == 0 && row ==0)
+		{
+			break;
+		}
+		cout<<"Field #"<<field<<":"<<endl;
+		field++;
+		char bang[col][row];
+		for(int i=0; i<col; i++)
+		{
+			cin.getline(bang[i],row+10,'\n'); //輸入 +10是為了將後面的空白也包入 (否則還要再用15行的方式換行) 由於我們是用行列拿值的 所以並不會拿到多餘的數值
+		}
+		
+		
+		for(int y=0; y<col; y++)
+		{
+			for(int x=0; x<row; x++)
+			{	
+				int scanning = 0;
+				
+				if(bang[y][x] == '.')  //枚舉每個點 只要該點是'.' 就開始掃描
+				{
+					for(int j=y-1; j<=y+1; j++) //掃描方式是使用36題的"大小"方式 (也就是往外擴一格)
+					{
+						for(int k=x-1; k<=x+1; k++)
+						{
+							if(j < 0 || k < 0 || j>=col || k>= row) //超出行列大小直接continue
+							{
+								continue;
+							}
+							if(bang[j][k] == '*') //如果在此'.'點外8格偵測到地雷 
+							{
+								scanning++;
+							}
+						}
+						
+					}
+					
+					bang[y][x] = (char)(scanning + '0'); //將此點換成掃描到的數量
+				}
+			}
+		}
+
+		for(int i=0; i<col; i++) //一點一點輸出 (不可用bang[i]直接輸出 因為25行的關係)
+		{
+			for(int j=0; j<row; j++)
+			{
+				cout<<bang[i][j];
+			}
+			
+			cout<<endl;
+		}
+
+		
+	}
+	return 0;
+}
