@@ -1,0 +1,31 @@
+http://samchien.blogspot.com/2013/04/10093-easy-problem.html
+
+#include <iostream>
+using namespace std;
+int main(){
+	int sum,d,n,i,j;   
+	cin>>sum;  //1.讀取幾個case
+	while(sum--)
+	{
+　　　　int num[100],sum=0;
+　　　　cin>>d>>n;  2.讀取模擬天數、政黨數量
+　　　　int har[d];
+　　　　for(i=0;i<n;i++)cin>>num[i]; 3.讀取每個政黨
+　　　　for(i=1;i<=d;i++)har[i]=0; 4.記錄每天的hartal狀態
+　　　　for(i=0;i<n;i++) 5.一個政黨一個政黨模擬
+　　　　{
+　　　　　　int temp=0;
+　　　　　　while(temp<=d) 6.直接用每個政黨的hartal天來計算(這樣就不用一天一天跑了)
+　　　　　　{
+　　　　　　　　if(temp%7!=0&&temp%7!=6) 7. 只要不是星期五以及星期六就可以是hartal day
+　　　　　　　　{
+　　　　　　　　　　har[temp]=1;
+　　　　　　　　}
+　　　　　　　　temp+=num[i];  同6
+　　　　　　}
+　　　　}
+　　　　for(i=1;i<=d;i++)sum+=har[i];  7.將所有罷工天數加起來
+　　　　cout<<sum<<endl;
+　　}
+	return 0;
+}
