@@ -1,0 +1,45 @@
+http://mypaper.pchome.com.tw/zerojudge/post/1322860986
+https://m80126colin.github.io/blog/articles/%E7%BF%BB%E8%AD%AF/uva/uva10908/
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int T;
+    char map[102][102];  
+    int i, M, N, Q, x, y;
+    scanf("%d", &T);
+    while(T--) {
+        scanf("%d %d %d", &M, &N, &Q);
+        getchar();
+        for(i = 0; i < M; i++)
+            gets(map[i]);
+        printf("%d %d %d\n", M, N, Q);
+
+        while(Q--) {
+            scanf("%d %d", &x, &y);
+            int ans = 1;
+            int i, a, b;
+            for(i = 0; i <= M || i <= N; i++) {  1.此作者掃描的方法是使用"大小" 也就是一個方形擴大出去 一開始0代表中心 一直掃描直到整張圖掃完
+                int flag = 0;
+                for(a = x-i; a <= x+i; a++) {  
+                    for(b = y-i; b <= y+i; b++) {
+                        if(a < 0 || b < 0 || a >= M || b >= N) { 2.超過大小
+                            flag = 1;break;
+                        }
+                        if(map[a][b] != map[x][y])  3.偵測到不是跟中心一樣的方塊
+                            flag = 1;
+                    }
+                }
+                if(flag == 0) {  4. 如果都是偵測到同樣的方塊   例如一開始是1*1 而在大小i=1時偵測到同樣的方塊 代表變成3*3的方塊了 所以ans=i*2+1
+                    if(ans < 2*i+1)
+                        ans = i*2+1;
+                } else  5.偵測到不同、超過大小就break
+                    break;
+            }
+            printf("%d\n", ans);
+        }
+    }
+    return 0;
+}
+
+補充:也可使用DP的方式解
