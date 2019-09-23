@@ -1,0 +1,47 @@
+http://mypaper.pchome.com.tw/zerojudge/post/1322223788
+
+#include <iostream>
+using namespace std;
+int main() {
+    int number;
+   	int count = 1;
+    while( cin>>number) 
+    {
+    	int bang[number];
+    	for(int i=0; i<number; i++) 
+    	{
+    		cin>>bang[i];
+    	}
+    	int F[40];
+    	F[0]=1;
+    	F[1]=2;
+    	for(int j=2; j<40; j++)  //先算好一個F陣列
+    	{
+    		F[j]=F[j-1]+F[j-2];
+    	}
+    	for(int i=0; i<number; i++)
+    	{
+    		int F_bang = bang[i];
+    		bool flag = false; //如果該數都不能被F整除 就連0都不用print
+    		cout<<F_bang<<" = ";
+    		for(int k=39; k>=0; k--) //主要解法為 從最大的F開始去除 只要能"整除" 便print 1 也因為是整除 剩下的餘數不可能被相鄰的數再整除
+                              //至於F究竟要多大 此作者用了40
+    		{
+    			
+    			if(F_bang / F[k] == 1)
+    			{
+    				cout<<1;
+    				F_bang %= F[k];
+    				flag=true;
+    			}
+    			else if(flag)
+    				cout<<0;
+    		}
+    		cout<<" (fib)"<<endl;
+    		count++;
+    	}
+    	
+    	
+    }
+    return 0;
+}
