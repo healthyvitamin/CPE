@@ -1,0 +1,72 @@
+http://hellowalk.blogspot.com/2017/12/java-uva-10193-all-you-need-is-love.html
+https://uva.onlinejudge.org/external/101/10193.pdf
+
+此題就是在找兩數是否有公因數L  S1 and S2 can be made only of L
+
+#include <iostream>
+#include <cstring>
+#include <cmath>
+using namespace std;
+int main(){
+	int number;
+	char clear[20];
+	
+	while(cin>>number)
+	{
+		cin.getline(clear,20,'\n');  1.清除cin輸入int後留著的空白 才會換行
+		char bang1[31],bang2[31];   2.一定要31  30的話 如果輸入剛好給你30個數值 (題目說不超過30個) 輸入後面的空白會留著 造成第二次沒有輸入
+//		cout<<number<<endl;
+		for(int i=0; i<number; i++)
+		{
+			cin.getline(bang1,31,'\n');
+			cin.getline(bang2,31,'\n');
+			int bang1_int=0 , bang2_int=0;
+      
+      3.將2進制轉化成十進制 想法為先取得該字串的最高位元 例如一個5長度 那麼位數就是 4 3 2 1 0
+      接著在看該位數是不是1 再用2^i取得該位數的十進制值
+			for(int j=strlen(bang1)-1 , k=0; j>=0, k<strlen(bang1); j--,k++)  
+			{
+				if (bang1[k] == '1')
+				{
+					bang1_int += pow(2,j);
+				}
+			}
+				
+			for(int j=strlen(bang2)-1 , k=0; j>=0, k<strlen(bang2); j--,k++)
+			{
+				if (bang2[k] == '1')
+				{
+					bang2_int += pow(2,j);
+				}
+			}
+				
+	//		cout<<bang1<<" number= "<<bang1_int<<endl;
+	//		cout<<bang2<<" number= "<<bang2_int<<endl;
+				
+			int GCDstart;
+				
+			if (bang1_int>bang2_int)
+				GCDstart=bang2_int;
+			else
+				GCDstart=bang1_int;
+			bool flag = true;
+			for(int m=GCDstart; m>1; m--)  4.找公因數 從較小的數字當起頭往下找
+			{
+				if(bang1_int % m ==0 && bang2_int % m ==0)
+				{
+					cout<<"Pair #"<<i+1<<": All you need is love!"<<endl;
+					flag = false;
+					break;
+				}
+			}
+			if(flag)
+			{
+				cout<<"Pair #"<<i+1<<": Love is not all you need!"<<endl;
+			}
+				
+					
+		}
+	
+	}
+	return 0;
+}
