@@ -1,4 +1,4 @@
-#include<stdio.h>
+
 #include<iostream>
 using namespace std;
 int main(){
@@ -7,7 +7,8 @@ int main(){
     {
     	int max=0; 
   
-	    if(aa>bb)  //2.將輸入從小排到大  要注意輸入進來的 aa<bb aa>bb aa==bb是否都考慮到 否則會沒有a跟b 且因為記憶體留存的關係 a跟b會是上一次的a跟b 
+	    if(aa>bb)  //2.將輸入從小排到大  要注意輸入進來的 aa<bb aa>bb aa==bb是否都考慮到 否則會沒有a跟b 且因為記憶體留存的關係 a跟b會是上一次的a跟b
+	    //或者是直接改用aa跟bb 如果aa>bb 多用一個temp進行交換，不要用a、b就不會出現記憶體留存..
 	    {
 	    	a=bb;
 	    	b=aa;
