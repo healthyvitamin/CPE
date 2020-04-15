@@ -23,10 +23,10 @@ int main(){
 			int kk = 0;
 			for( kk=0; kk<bang-1; kk++)  
 			{
-				if(bang3[kk] == k)
+				if(bang3[kk] == k) //假如有比對到就跳出，假如都沒有比對到kk最後會=bang-1
 					break;
 			}
-			if(kk==bang-1) //只要有一個數不存在 變不是jolly 
+			if(kk==bang-1) //這裡只有在上面都沒比對到時if會=true，代表k沒有在裡面，違反jolly的規則(1~n-1都必須存在)
 				jolly = false;
 		}
 		
