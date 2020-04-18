@@ -26,3 +26,31 @@ int main(){
             2.例如 70 69  不可能1跟69 因為相減=68 在實際跑時 x=139 y<0 
             3. 小數的問題 例如給 100 跟 1  由於題目不允許小數 所以50.5 跟49.5不能存在 因此我用round第13行將0.5進位 讓它變成50.5跟50
             接著在15行加入判斷相加後是否等於bang1
+	    
+//新版: 
+#include <iostream>
+using namespace std;
+int main(){
+	int n;
+	cin>>n;
+	for(int i=0; i<n; i++)
+	{
+		int bang1,bang2;
+		cin>>bang1>>bang2;
+		int x,y;	//2.所以也不需要用float跟round了，100跟1，x=101/2=50、y=100-50=50，依然過不了x-y=1這關
+		x = (bang1+bang2)/2;  
+		y = bang1 - x;  
+		
+		if(y>x) //3.y小於x時要對調，因為x-y只會是正數，代表x一定是比較大的那方
+		{
+			int temp = y;
+			y = x;
+			x = temp;
+		}
+		if(bang1 < bang2 || x-y !=bang2 || x+y != bang1) //1.從公式去做判斷，看看x+y x-y還是不是bang1、bang2，例外繼承上面第一點，bang1<bang2的問題
+			cout<<"impossible"<<endl;
+		else
+			cout<<x<<" "<<y<<endl;
+	}
+	return 0;
+}
