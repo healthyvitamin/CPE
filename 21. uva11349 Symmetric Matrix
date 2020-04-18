@@ -16,6 +16,8 @@ int main(){
 		bool Symmetric=true;
 		cin.getline(clear,10,'\n');  //由於在輸入時 系統會故意給你最後留個空白 因此在每次讀取N前 要用getline把空白讀取起來 
 		cin.getline(N,10,'\n');  //以及讀取N時 後面也會留空白 因此讀取的字數必須設大一點! 
+//如果想要改成scanf、string，使用"一次讀取一整行"來解決上述問題，也不行，因為字串只要遇到"空格"，例如123 456 將會判定成輸入"兩個"字串，而不是原先想要的一整行
+//所以scanf、跟string依然要使用getline來嚴格宣告要讀取到什麼時候
 	//	cout<<N<<endl;
 		int matrix_number = pow(N[4]-'0',2);  //注意因為char字串最後會保留一個\0作為結尾 因此N至少要容納 N = 3 01234 "5"(保留'\0') 6個字
 		int element=0;
